@@ -70,7 +70,7 @@ public class Car {
     /**
      * The primary purpose of this class to carry behaviour and NOT state
      */
-    static class RedCarCriterion implements CarCriterion {
+    private static class RedCarCriterion implements CarCriterion {
         //Since RedCriterion belongs to Concept as a whole ie Car and not particular instance, we make it  static
         @Override
         public boolean test(Car c) {
@@ -87,7 +87,7 @@ public class Car {
     /**
      * this criterion has State along with behaviour. But the Primary reason is it carries the behaviour
      */
-    static class GasLevelCriterion implements CarCriterion {
+    private static class GasLevelCriterion implements CarCriterion {
         private int threshold;
 
         public GasLevelCriterion(int threshold) {
