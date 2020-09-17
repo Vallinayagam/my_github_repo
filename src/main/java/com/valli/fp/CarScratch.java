@@ -12,7 +12,7 @@ public class CarScratch {
         System.out.println("--------------------------------------------------------");
     }
 
-    public static List<Car> getColoredCars(List<Car> input, String color) {
+    public static List<Car> getColoredCars(Iterable<Car> input, String color) {
         List<Car> output = new ArrayList<>();
         for (Car car : input) {
             if( color.equals(car.getColor()) ){
