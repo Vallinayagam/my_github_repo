@@ -65,18 +65,14 @@ public class Car {
 //        return new RedCarCriterion();
         return RED_CAR_CRITERION;
     }
-    private static final RedCarCriterion RED_CAR_CRITERION = new RedCarCriterion();
-
-    /**
-     * The primary purpose of this class to carry behaviour and NOT state
-     */
-    private static class RedCarCriterion implements CarCriterion {
+    private static final CarCriterion RED_CAR_CRITERION = new /*RedCarCriterion();
+    private static class RedCarCriterion implements */ CarCriterion() {
         //Since RedCriterion belongs to Concept as a whole ie Car and not particular instance, we make it  static
         @Override
         public boolean test(Car c) {
             return c.color.equals("Red"); //since RedCarCriterion is nestedClass, it can access private variables now
         }
-    }
+    };
 
     /**
      * This factory cannot be singleton,as the input threshold might differ on different invocations
