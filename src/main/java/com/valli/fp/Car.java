@@ -61,6 +61,8 @@ public class Car {
                 '}';
     }
 
+    public static final RedCarCriterion RED_CAR_CRITERION = new RedCarCriterion();
+
     /**
      * The primary purpose of this class to carry behaviour and NOT state
      */
