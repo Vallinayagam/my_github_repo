@@ -25,32 +25,6 @@ interface CarCriterion {
     boolean test(Car c);
 }
 
-/**
- * The primary purpose of this class to carry behaviour and NOT state
- */
-class RedCarCriterion implements CarCriterion {
-    @Override
-    public boolean test(Car c) {
-        return c.getColor().equals("Red");
-    }
-}
-
-/**
- * this criterion has State along with behaviour. But the Primary reason is it carries the behaviour
- */
-class GasLevelCriterion implements CarCriterion {
-    private int threshold;
-
-    public GasLevelCriterion(int threshold) {
-        this.threshold = threshold;
-    }
-
-    @Override
-    public boolean test(Car c) {
-        return c.getGasLevel() >= threshold;
-    }
-}
-
 public class CarScratch {
     public static void showAll(List<Car> cars){
         for (Car c : cars) {
@@ -81,9 +55,9 @@ public class CarScratch {
 
         showAll(cars);
 
-        showAll(getCarsByCriterion(cars, new RedCarCriterion()));
+        showAll(getCarsByCriterion(cars, new Car.RedCarCriterion()));
 
-        showAll(getCarsByCriterion(cars, new GasLevelCriterion(6)));
+        showAll(getCarsByCriterion(cars, new Car.GasLevelCriterion(6)));
 
         showAll(cars);
 

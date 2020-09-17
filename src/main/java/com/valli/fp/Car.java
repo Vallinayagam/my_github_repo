@@ -60,4 +60,32 @@ public class Car {
                 (trunkContents != null ? ", trunkContents=" + trunkContents : " no trunk ") +
                 '}';
     }
+
+    /**
+     * The primary purpose of this class to carry behaviour and NOT state
+     */
+    static class RedCarCriterion implements CarCriterion {
+        //Since RedCriterion belongs to Concept as a whole ie Car and not particular instance, we make it  static
+        @Override
+        public boolean test(Car c) {
+            return c.color.equals("Red"); //since RedCarCriterion is innnerClass, it can access private variables now
+        }
+    }
+
+    /**
+     * this criterion has State along with behaviour. But the Primary reason is it carries the behaviour
+     */
+    static class GasLevelCriterion implements CarCriterion {
+        private int threshold;
+
+        public GasLevelCriterion(int threshold) {
+            this.threshold = threshold;
+        }
+
+        @Override
+        public boolean test(Car c) {
+            return c.gasLevel >= threshold; //since gasLevel is innnerClass, it can access private variables now
+        }
+    }
+
 }
