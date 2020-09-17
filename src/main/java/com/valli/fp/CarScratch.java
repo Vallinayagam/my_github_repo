@@ -15,6 +15,18 @@ class PassengerCountOrder implements Comparator<Car> {
     }
 }
 
+interface CarCriterion {
+    boolean test(Car c);
+}
+
+class RedCarCriterion implements CarCriterion {
+
+    @Override
+    public boolean test(Car c) {
+        return c.getColor().equals("Red");
+    }
+}
+
 public class CarScratch {
     public static void showAll(List<Car> cars){
         for (Car c : cars) {
@@ -23,20 +35,10 @@ public class CarScratch {
         System.out.println("--------------------------------------------------------");
     }
 
-    public static List<Car> getColoredCars(Iterable<Car> input, String color) {
+    public static List<Car> getCarsByCriterion(Iterable<Car> input, CarCriterion criterion) {
         List<Car> output = new ArrayList<>();
         for (Car car : input) {
-            if( color.equals(car.getColor()) ){
-                output.add(car);
-            }
-        }
-        return output;
-    }
-
-    public static List<Car> getCarsByGasLevel(Iterable<Car> input, int gasLevel) {
-        List<Car> output = new ArrayList<>();
-        for (Car car : input) {
-            if( car.getGasLevel() >= gasLevel ){
+            if(criterion.test(car)){
                 output.add(car);
             }
         }
@@ -55,13 +57,13 @@ public class CarScratch {
 
         showAll(cars);
 
-        showAll(getColoredCars(cars, "Red"));
+        showAll(getCarsByCriterion(cars, new RedCarCriterion()));
 
         showAll(cars);
 
-        showAll(getCarsByGasLevel(cars, 4));
+//        showAll(getCarsByGasLevel(cars, 4));
 
-        cars.sort(new PassengerCountOrder());
-        showAll(cars);
+//        cars.sort(new PassengerCountOrder());
+//        showAll(cars);
     }
 }
