@@ -2,7 +2,18 @@ package com.valli.fp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+
+/**
+ * This class does not have state in it. Its SOLE purpose is to define behaviour only.
+ */
+class PassengerCountOrder implements Comparator<Car> {
+    @Override
+    public int compare(Car o1, Car o2) {
+        return o1.getPassengers().size() - o2.getPassengers().size();
+    }
+}
 
 public class CarScratch {
     public static void showAll(List<Car> cars){
@@ -50,6 +61,7 @@ public class CarScratch {
 
         showAll(getCarsByGasLevel(cars, 4));
 
+        cars.sort(new PassengerCountOrder());
         showAll(cars);
     }
 }
