@@ -37,5 +37,9 @@ public class CarScratch {
         showAll(getColoredCars(cars, "Red"));
 
         showAll(cars);
+
+        showAll(getColoredCars(cars, "Black"));
+
+        showAll(cars);
     }
 }
