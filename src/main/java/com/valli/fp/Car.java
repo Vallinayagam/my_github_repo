@@ -61,7 +61,7 @@ public class Car {
                 '}';
     }
 
-    public static RedCarCriterion getRedCarCriterion() {
+    public static CarCriterion getRedCarCriterion() {
         return RED_CAR_CRITERION;
     }
     private static final RedCarCriterion RED_CAR_CRITERION = new RedCarCriterion();
