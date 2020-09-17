@@ -15,6 +15,12 @@ class PassengerCountOrder implements Comparator<Car> {
     }
 }
 
+
+/**
+ * The concept of passing behaviour to a function via passing an object is not something new.  This is called
+ * COMMAND Pattern (Read documentation further), which has been documented in Gof4 DP book.
+ * Command Pattern finds heavy usage in functional programming paradigm
+ */
 interface CarCriterion {
     boolean test(Car c);
 }
@@ -30,7 +36,7 @@ class RedCarCriterion implements CarCriterion {
 }
 
 /**
- * this criterion has State along with behaviour, which is OK is some situations
+ * this criterion has State along with behaviour. But the Primary reason is it carries the behaviour
  */
 class GasLevelCriterion implements CarCriterion {
     private int threshold;
