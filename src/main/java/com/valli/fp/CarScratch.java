@@ -19,11 +19,29 @@ interface CarCriterion {
     boolean test(Car c);
 }
 
+/**
+ * The primary purpose of this class to carry behaviour and NOT state
+ */
 class RedCarCriterion implements CarCriterion {
-
     @Override
     public boolean test(Car c) {
         return c.getColor().equals("Red");
+    }
+}
+
+/**
+ * this criterion has State along with behaviour, which is OK is some situations
+ */
+class GasLevelCriterion implements CarCriterion {
+    private int threshold;
+
+    public GasLevelCriterion(int threshold) {
+        this.threshold = threshold;
+    }
+
+    @Override
+    public boolean test(Car c) {
+        return c.getGasLevel() >= threshold;
     }
 }
 
@@ -58,6 +76,8 @@ public class CarScratch {
         showAll(cars);
 
         showAll(getCarsByCriterion(cars, new RedCarCriterion()));
+
+        showAll(getCarsByCriterion(cars, new GasLevelCriterion(6)));
 
         showAll(cars);
 
