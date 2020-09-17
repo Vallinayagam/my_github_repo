@@ -79,6 +79,12 @@ public class Car {
     }
 
     /**
+     * This factory cannot be singleton,as the input threshold might differ on different invocations
+     */
+    public static CarCriterion getGasLevelCriterion(int threshold) {
+        return new GasLevelCriterion(threshold);
+    }
+    /**
      * this criterion has State along with behaviour. But the Primary reason is it carries the behaviour
      */
     static class GasLevelCriterion implements CarCriterion {
