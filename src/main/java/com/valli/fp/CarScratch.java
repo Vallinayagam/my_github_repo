@@ -61,6 +61,10 @@ public class CarScratch {
 
         showAll(cars);
 
+        cars.sort(Car.getCarGasComparator());
+
+        showAll(cars);
+
 //        showAll(getCarsByGasLevel(cars, 4));
 
 //        cars.sort(new PassengerCountOrder());

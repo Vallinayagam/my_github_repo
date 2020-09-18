@@ -2,6 +2,7 @@ package com.valli.fp;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Car {
@@ -88,6 +89,18 @@ public class Car {
         @Override
         public boolean test(Car c) {
             return c.gasLevel >= threshold; //since gasLevel is nestedClass, it can access private variables now
+        }
+    }
+
+    public static Comparator<Car> getCarGasComparator(){
+        return CAR_GAS_COMPARATOR;
+    }
+    private static final Comparator<Car> CAR_GAS_COMPARATOR = new CarGasComparator();
+    private static class CarGasComparator implements Comparator<Car> {
+
+        @Override
+        public int compare(Car o1, Car o2) {
+            return o1.gasLevel - o2.gasLevel;
         }
     }
 
