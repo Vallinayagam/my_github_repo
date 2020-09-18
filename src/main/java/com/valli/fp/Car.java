@@ -95,13 +95,6 @@ public class Car {
     public static Comparator<Car> getCarGasComparator(){
         return CAR_GAS_COMPARATOR;
     }
-    private static final Comparator<Car> CAR_GAS_COMPARATOR = new CarGasComparator();
-    private static class CarGasComparator implements Comparator<Car> {
-
-        @Override
-        public int compare(Car o1, Car o2) {
-            return o1.gasLevel - o2.gasLevel;
-        }
-    }
+    private static final Comparator<Car> CAR_GAS_COMPARATOR = (Car o1, Car o2) -> o1.gasLevel - o2.gasLevel;
 
 }
