@@ -1,5 +1,6 @@
 package com.valli.fp;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -77,5 +78,9 @@ public class CarScratch {
         showAll(colors);
         showAll(getByCriterion(colors, s -> s.length() > 4));
         showAll(getByCriterion(colors, s -> Character.isUpperCase(s.charAt(0))));
+
+        LocalDate ld = LocalDate.now();
+        List<LocalDate> dates = Arrays.asList(ld, ld.plusDays(1), ld.plusDays(7), ld.minusDays(1), ld.minusDays(6));
+        showAll(getByCriterion(dates, dt -> dt.isAfter(ld)));
     }
 }
