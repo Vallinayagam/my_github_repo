@@ -67,9 +67,10 @@ public class CarScratch {
 
         showAll(cars);
 
-//        showAll(getCarsByGasLevel(cars, 4));
+        showAll(getCarsByCriterion(cars, Car.getFourPassengerCars()));
+        showAll(getCarsByCriterion(cars, c -> c.getPassengers().size() == 2));
 
-//        cars.sort(new PassengerCountOrder());
-//        showAll(cars);
+
+        boolean b = ((CarCriterion)(c -> c.getPassengers().size() > 2)).test(Car.withGasColorPassengers(0, "Red"));
     }
 }

@@ -97,4 +97,7 @@ public class Car {
     }
     private static final Comparator<Car> CAR_GAS_COMPARATOR = (Car o1, Car o2) -> o1.gasLevel - o2.gasLevel;
 
+    public static CarCriterion getFourPassengerCars() {
+        return c -> c.getPassengers().size() == 4;
+    }
 }
