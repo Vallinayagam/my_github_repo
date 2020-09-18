@@ -21,8 +21,10 @@ class PassengerCountOrder implements Comparator<Car> {
  * COMMAND Pattern (Read documentation further), which has been documented in Gof4 DP book.
  * Command Pattern finds heavy usage in functional programming paradigm
  */
+@FunctionalInterface
 interface CarCriterion {
     boolean test(Car c);
+//    void stuff();
 }
 
 public class CarScratch {
