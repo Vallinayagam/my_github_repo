@@ -22,24 +22,24 @@ class PassengerCountOrder implements Comparator<Car> {
  * Command Pattern finds heavy usage in functional programming paradigm
  */
 @FunctionalInterface
-interface CarCriterion {
-    boolean test(Car c);
+interface Criterion<E> {
+    boolean test(E element);
 //    void stuff();
 }
 
 public class CarScratch {
-    public static void showAll(List<Car> cars){
-        for (Car c : cars) {
+    public static <E> void showAll(List<E> cars){
+        for (E c : cars) {
             System.out.println(c);
         }
         System.out.println("--------------------------------------------------------");
     }
 
-    public static List<Car> getCarsByCriterion(Iterable<Car> input, CarCriterion criterion) {
-        List<Car> output = new ArrayList<>();
-        for (Car car : input) {
-            if(criterion.test(car)){
-                output.add(car);
+    public static <E> List<E> getCarsByCriterion(Iterable<E> input, Criterion<E> criterion) {
+        List<E> output = new ArrayList<>();
+        for (E e : input) {
+            if(criterion.test(e)){
+                output.add(e);
             }
         }
         return output;
@@ -71,6 +71,6 @@ public class CarScratch {
         showAll(getCarsByCriterion(cars, c -> c.getPassengers().size() == 2));
 
 
-        boolean b = ((CarCriterion)(c -> c.getPassengers().size() > 2)).test(Car.withGasColorPassengers(0, "Red"));
+        boolean b = ((Criterion<Car>)(c -> c.getPassengers().size() > 2)).test(Car.withGasColorPassengers(0, "Red"));
     }
 }

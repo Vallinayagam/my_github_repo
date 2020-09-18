@@ -22,7 +22,6 @@ public class Car {
      * Use Factory methods to create objects - Named Static Factory
      * With the release of Java 8, almost all new APIs uses Static Factory to create objects
      * instead of public constructors, except Exception
-     * @return
      */
     public static Car withGasColorPassengers(int gas, String color, String... passengers) {
         //Using unmodifiable list to enable immutable data for functional programming
@@ -62,24 +61,24 @@ public class Car {
                 '}';
     }
 
-    public static CarCriterion getRedCarCriterion() {
+    public static Criterion<Car> getRedCarCriterion() {
 //        return new RedCarCriterion();
         return RED_CAR_CRITERION;
     }
-    private static final CarCriterion RED_CAR_CRITERION = (Car c) -> {
+    private static final Criterion<Car> RED_CAR_CRITERION = (Car c) -> {
             return c.color.equals("Red"); //since RedCarCriterion is nestedClass, it can access private variables now
     };
 
     /**
      * This factory cannot be singleton,as the input threshold might differ on different invocations
      */
-    public static CarCriterion getGasLevelCriterion(int threshold) {
+    public static Criterion<Car> getGasLevelCriterion(int threshold) {
         return new GasLevelCriterion(threshold);
     }
     /**
      * this criterion has State along with behaviour. But the Primary reason is it carries the behaviour
      */
-    private static class GasLevelCriterion implements CarCriterion {
+    private static class GasLevelCriterion implements Criterion<Car> {
         private int threshold;
 
         public GasLevelCriterion(int threshold) {
@@ -97,7 +96,7 @@ public class Car {
     }
     private static final Comparator<Car> CAR_GAS_COMPARATOR = (Car o1, Car o2) -> o1.gasLevel - o2.gasLevel;
 
-    public static CarCriterion getFourPassengerCars() {
+    public static Criterion<Car> getFourPassengerCars() {
         return c -> c.getPassengers().size() == 4;
     }
 }
