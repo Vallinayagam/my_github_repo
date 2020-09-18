@@ -35,7 +35,7 @@ public class CarScratch {
         System.out.println("--------------------------------------------------------");
     }
 
-    public static <E> List<E> getCarsByCriterion(Iterable<E> input, Criterion<E> criterion) {
+    public static <E> List<E> getByCriterion(Iterable<E> input, Criterion<E> criterion) {
         List<E> output = new ArrayList<>();
         for (E e : input) {
             if(criterion.test(e)){
@@ -57,9 +57,9 @@ public class CarScratch {
 
         showAll(cars);
 
-        showAll(getCarsByCriterion(cars, Car.getRedCarCriterion()));
+        showAll(getByCriterion(cars, Car.getRedCarCriterion()));
 
-        showAll(getCarsByCriterion(cars, Car.getGasLevelCriterion(6)));
+        showAll(getByCriterion(cars, Car.getGasLevelCriterion(6)));
 
         showAll(cars);
 
@@ -67,10 +67,15 @@ public class CarScratch {
 
         showAll(cars);
 
-        showAll(getCarsByCriterion(cars, Car.getFourPassengerCars()));
-        showAll(getCarsByCriterion(cars, c -> c.getPassengers().size() == 2));
+        showAll(getByCriterion(cars, Car.getFourPassengerCars()));
+        showAll(getByCriterion(cars, c -> c.getPassengers().size() == 2));
 
 
         boolean b = ((Criterion<Car>)(c -> c.getPassengers().size() > 2)).test(Car.withGasColorPassengers(0, "Red"));
+
+        List<String> colors = Arrays.asList("LightCoral", "pink", "Orange", "Gold", "plum", "Blue", "limegreen");
+        showAll(colors);
+        showAll(getByCriterion(colors, s -> s.length() > 4));
+        showAll(getByCriterion(colors, s -> Character.isUpperCase(s.charAt(0))));
     }
 }
