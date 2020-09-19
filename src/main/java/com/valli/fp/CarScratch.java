@@ -17,30 +17,9 @@ class PassengerCountOrder implements Comparator<Car> {
 }
 
 
-/**
- * The concept of passing behaviour to a function via passing an object is not something new.  This is called
- * COMMAND Pattern (Read documentation further), which has been documented in Gof4 DP book.
- * Command Pattern finds heavy usage in functional programming paradigm
- */
-@FunctionalInterface
-interface Criterion<E> {
-    boolean test(E element);
-//    void stuff();
-}
-
 public class CarScratch {
 
-    public static <E> Criterion<E> negate(Criterion<E> criterion) {
-        return x -> !criterion.test(x);
-    }
 
-    public static <E> Criterion<E> and(Criterion<E> first, Criterion<E> second){
-        return x -> first.test(x) && second.test(x);
-    }
-
-    public static <E> Criterion<E> or(Criterion<E> first, Criterion<E> second){
-        return x -> first.test(x) || second.test(x);
-    }
 
     public static <E> void showAll(List<E> cars){
         for (E c : cars) {
@@ -103,16 +82,16 @@ public class CarScratch {
         Criterion<Car> level7 = Car.getGasLevelCriterion(7);
         showAll(getByCriterion(cars, level7));
 
-        Criterion<Car> notLevel7 = negate(level7);
+        Criterion<Car> notLevel7 = Criterion.negate(level7);
         showAll(getByCriterion(cars, notLevel7));
 
         Criterion<Car> isRed = Car.isCarInColor("Red");
         Criterion<Car> fourPassengers = Car.getFourPassengerCars();
-        Criterion<Car> redFourPassengers = and(isRed, fourPassengers);
+        Criterion<Car> redFourPassengers = Criterion.and(isRed, fourPassengers);
         showAll(getByCriterion(cars, redFourPassengers));
 
         Criterion<Car> isBlack = Car.isCarInColor("Black");
-        Criterion<Car> blackOrFourPassengers = or(isBlack, fourPassengers);
+        Criterion<Car> blackOrFourPassengers = Criterion.or(isBlack, fourPassengers);
         showAll(getByCriterion(cars, blackOrFourPassengers));
     }
 }
