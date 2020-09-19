@@ -33,6 +33,15 @@ public class CarScratch {
     public static <E> Criterion<E> negate(Criterion<E> criterion) {
         return x -> !criterion.test(x);
     }
+
+    public static <E> Criterion<E> and(Criterion<E> first, Criterion<E> second){
+        return x -> first.test(x) && second.test(x);
+    }
+
+    public static <E> Criterion<E> or(Criterion<E> first, Criterion<E> second){
+        return x -> first.test(x) || second.test(x);
+    }
+
     public static <E> void showAll(List<E> cars){
         for (E c : cars) {
             System.out.println(c);
@@ -96,5 +105,14 @@ public class CarScratch {
 
         Criterion<Car> notLevel7 = negate(level7);
         showAll(getByCriterion(cars, notLevel7));
+
+        Criterion<Car> isRed = Car.isCarInColor("Red");
+        Criterion<Car> fourPassengers = Car.getFourPassengerCars();
+        Criterion<Car> redFourPassengers = and(isRed, fourPassengers);
+        showAll(getByCriterion(cars, redFourPassengers));
+
+        Criterion<Car> isBlack = Car.isCarInColor("Black");
+        Criterion<Car> blackOrFourPassengers = or(isBlack, fourPassengers);
+        showAll(getByCriterion(cars, blackOrFourPassengers));
     }
 }
