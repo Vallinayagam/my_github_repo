@@ -58,29 +58,29 @@ public class CarScratch {
 
         showAll(cars);
 
-        showAll(getByCriterion(cars, Car.getRedCarCriterion()));
+//        showAll(getByCriterion(cars, Car.getRedCarCriterion()));
 
         showAll(getByCriterion(cars, Car.getGasLevelCriterion(6)));
 
-        showAll(cars);
-
-        cars.sort(Car.getCarGasComparator());
-
-        showAll(cars);
-
-        showAll(getByCriterion(cars, Car.getFourPassengerCars()));
-        showAll(getByCriterion(cars, c -> c.getPassengers().size() == 2));
-
-
-        boolean b = ((Criterion<Car>)(c -> c.getPassengers().size() > 2)).test(Car.withGasColorPassengers(0, "Red"));
-
-        List<String> colors = Arrays.asList("LightCoral", "pink", "Orange", "Gold", "plum", "Blue", "limegreen");
-        showAll(colors);
-        showAll(getByCriterion(colors, s -> s.length() > 4));
-        showAll(getByCriterion(colors, s -> Character.isUpperCase(s.charAt(0))));
-
-        LocalDate ld = LocalDate.now();
-        List<LocalDate> dates = Arrays.asList(ld, ld.plusDays(1), ld.plusDays(7), ld.minusDays(1), ld.minusDays(6));
-        showAll(getByCriterion(dates, dt -> dt.isAfter(ld)));
+//        showAll(cars);
+//
+//        cars.sort(Car.getCarGasComparator());
+//
+//        showAll(cars);
+//
+//        showAll(getByCriterion(cars, Car.getFourPassengerCars()));
+//        showAll(getByCriterion(cars, c -> c.getPassengers().size() == 2));
+//
+//
+//        boolean b = ((Criterion<Car>)(c -> c.getPassengers().size() > 2)).test(Car.withGasColorPassengers(0, "Red"));
+//
+//        List<String> colors = Arrays.asList("LightCoral", "pink", "Orange", "Gold", "plum", "Blue", "limegreen");
+//        showAll(colors);
+//        showAll(getByCriterion(colors, s -> s.length() > 4));
+//        showAll(getByCriterion(colors, s -> Character.isUpperCase(s.charAt(0))));
+//
+//        LocalDate ld = LocalDate.now();
+//        List<LocalDate> dates = Arrays.asList(ld, ld.plusDays(1), ld.plusDays(7), ld.minusDays(1), ld.minusDays(6));
+//        showAll(getByCriterion(dates, dt -> dt.isAfter(ld)));
     }
 }

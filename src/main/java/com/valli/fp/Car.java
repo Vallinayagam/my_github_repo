@@ -73,22 +73,12 @@ public class Car {
      * This factory cannot be singleton,as the input threshold might differ on different invocations
      */
     public static Criterion<Car> getGasLevelCriterion(int threshold) {
-        return new GasLevelCriterion(threshold);
-    }
-    /**
-     * this criterion has State along with behaviour. But the Primary reason is it carries the behaviour
-     */
-    private static class GasLevelCriterion implements Criterion<Car> {
-        private int threshold;
-
-        public GasLevelCriterion(int threshold) {
-            this.threshold = threshold;
-        }
-
-        @Override
-        public boolean test(Car c) {
-            return c.gasLevel >= threshold; //since gasLevel is nestedClass, it can access private variables now
-        }
+        return new Criterion<Car>() {
+            @Override
+            public boolean test(Car c) {
+                return c.gasLevel >= threshold; //since gasLevel is nestedClass, it can access private variables now
+            }
+        };
     }
 
     public static Comparator<Car> getCarGasComparator(){
