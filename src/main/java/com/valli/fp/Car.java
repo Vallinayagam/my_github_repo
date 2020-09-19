@@ -84,4 +84,8 @@ public class Car {
     public static Criterion<Car> getFourPassengerCars() {
         return c -> c.getPassengers().size() == 4;
     }
+
+    public static Criterion<Car> isCarInColor(String... colors) {
+        return c -> Arrays.asList(colors).contains(c.color);
+    }
 }

@@ -62,6 +62,8 @@ public class CarScratch {
 
         showAll(getByCriterion(cars, Car.getGasLevelCriterion(6)));
 
+        showAll(getByCriterion(cars, Car.isCarInColor("Red", "Black")));
+
 //        showAll(cars);
 //
 //        cars.sort(Car.getCarGasComparator());
