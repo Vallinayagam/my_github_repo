@@ -82,16 +82,16 @@ public class CarScratch {
         Criterion<Car> level7 = Car.getGasLevelCriterion(7);
         showAll(getByCriterion(cars, level7));
 
-        Criterion<Car> notLevel7 = Criterion.negate(level7);
+        Criterion<Car> notLevel7 = level7.negate();
         showAll(getByCriterion(cars, notLevel7));
 
         Criterion<Car> isRed = Car.isCarInColor("Red");
         Criterion<Car> fourPassengers = Car.getFourPassengerCars();
-        Criterion<Car> redFourPassengers = Criterion.and(isRed, fourPassengers);
+        Criterion<Car> redFourPassengers = isRed.and(fourPassengers);
         showAll(getByCriterion(cars, redFourPassengers));
 
         Criterion<Car> isBlack = Car.isCarInColor("Black");
-        Criterion<Car> blackOrFourPassengers = Criterion.or(isBlack, fourPassengers);
+        Criterion<Car> blackOrFourPassengers = isBlack.or(fourPassengers);
         showAll(getByCriterion(cars, blackOrFourPassengers));
     }
 }
