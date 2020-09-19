@@ -73,12 +73,7 @@ public class Car {
      * This factory cannot be singleton,as the input threshold might differ on different invocations
      */
     public static Criterion<Car> getGasLevelCriterion(int threshold) {
-        return new Criterion<Car>() {
-            @Override
-            public boolean test(Car c) {
-                return c.gasLevel >= threshold; //since gasLevel is nestedClass, it can access private variables now
-            }
-        };
+        return c -> c.gasLevel >= threshold;
     }
 
     public static Comparator<Car> getCarGasComparator(){
