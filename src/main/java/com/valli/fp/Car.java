@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Car {
     private final int gasLevel;
@@ -61,18 +62,18 @@ public class Car {
                 '}';
     }
 
-    public static Criterion<Car> getRedCarCriterion() {
+    public static Predicate<Car> getRedCarPredicate() {
 //        return new RedCarCriterion();
-        return RED_CAR_CRITERION;
+        return RED_CAR_PREDICATE;
     }
-    private static final Criterion<Car> RED_CAR_CRITERION = (Car c) -> {
+    private static final Predicate<Car> RED_CAR_PREDICATE = (Car c) -> {
             return c.color.equals("Red"); //since RedCarCriterion is nestedClass, it can access private variables now
     };
 
     /**
      * This factory cannot be singleton,as the input threshold might differ on different invocations
      */
-    public static Criterion<Car> getGasLevelCriterion(int threshold) {
+    public static Predicate<Car> getGasLevelCriterion(int threshold) {
         return c -> c.gasLevel >= threshold;
     }
 
@@ -81,11 +82,11 @@ public class Car {
     }
     private static final Comparator<Car> CAR_GAS_COMPARATOR = (Car o1, Car o2) -> o1.gasLevel - o2.gasLevel;
 
-    public static Criterion<Car> getFourPassengerCars() {
+    public static Predicate<Car> getFourPassengerCars() {
         return c -> c.getPassengers().size() == 4;
     }
 
-    public static Criterion<Car> isCarInColor(String... colors) {
+    public static Predicate<Car> isCarInColor(String... colors) {
         return c -> Arrays.asList(colors).contains(c.color);
     }
 }
